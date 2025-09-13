@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.Web.Api", "Person.Web.Api\Person.Web.Api.csproj", "{DF317DEA-E1B3-47FE-AFE5-2FCD801DC61A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Person.Web", "Person.Web", "{2AB77F8E-1612-4BC0-AF39-3042438F5449}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Person.DataAccess", "Person.DataAccess", "{9DF96D85-E15B-41FA-BFB1-FABDA8D630DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.DataAccess.Context", "Person.DataAccess.Context\Person.DataAccess.Context.csproj", "{24EEEF5F-53E1-4DB4-801F-AAC4F0B556CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF317DEA-E1B3-47FE-AFE5-2FCD801DC61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF317DEA-E1B3-47FE-AFE5-2FCD801DC61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF317DEA-E1B3-47FE-AFE5-2FCD801DC61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF317DEA-E1B3-47FE-AFE5-2FCD801DC61A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24EEEF5F-53E1-4DB4-801F-AAC4F0B556CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24EEEF5F-53E1-4DB4-801F-AAC4F0B556CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24EEEF5F-53E1-4DB4-801F-AAC4F0B556CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24EEEF5F-53E1-4DB4-801F-AAC4F0B556CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF317DEA-E1B3-47FE-AFE5-2FCD801DC61A} = {2AB77F8E-1612-4BC0-AF39-3042438F5449}
+		{24EEEF5F-53E1-4DB4-801F-AAC4F0B556CD} = {9DF96D85-E15B-41FA-BFB1-FABDA8D630DE}
+	EndGlobalSection
+EndGlobal
