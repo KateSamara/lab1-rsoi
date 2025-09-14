@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Person.Domain.PersonModels;
 
 namespace Person.DataAccess.PersonModels.Converters;
@@ -13,8 +14,12 @@ public static class PersonConverter
             work: personRequest.Work);
     }
 
-    public static PersonResponse ToDomain(this PersonDb personDb)
+    [return: NotNullIfNotNull(nameof(personDb))]
+    public static PersonResponse? ToDomain(this PersonDb? personDb)
     {
+        if (personDb is null)
+            return null;
+        
         return new PersonResponse
         {
             Id = personDb.Id,

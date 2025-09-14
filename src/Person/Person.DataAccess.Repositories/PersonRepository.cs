@@ -45,4 +45,21 @@ public class PersonRepository(PersonContext personContext) : IPersonRepository
             throw;
         }
     }
+
+    public async Task<PersonResponse?> GetPersonByIdAsync(int id)
+    {
+        try
+        {
+            var personDb = await _personContext.Persons
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            return personDb.ToDomain();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

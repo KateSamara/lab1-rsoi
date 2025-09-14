@@ -7,4 +7,6 @@ public interface IPersonRepository
     Task<int> AddPersonAsync(PersonRequest personResponse);
     
     Task<List<PersonResponse>> GetAllPersonAsync();
+    
+    Task<PersonResponse?> GetPersonByIdAsync(int id);
 }

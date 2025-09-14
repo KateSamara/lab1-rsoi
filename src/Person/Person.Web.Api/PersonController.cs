@@ -42,4 +42,19 @@ public class PersonController : ControllerBase
         
         return Ok(persons.ConvertAll(person => person.ToDto()));
     }
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(PersonResponseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetPersonByIdAsync([FromRoute] int id)
+    {
+        var person = await _personRepository.GetPersonByIdAsync(id);
+        if (person is null)
+        {
+            return NotFound(new { message = "Person not found." });
+        }
+        
+        return Ok(person.ToDto());
+    }
 }
