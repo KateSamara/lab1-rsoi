@@ -18,6 +18,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Person.DataAccess.Context\Person.DataAccess.Context.csproj" />
+      <ProjectReference Include="..\Person.DataAccess.Repositories\Person.DataAccess.Repositories.csproj" />
+      <ProjectReference Include="..\Person.Web.Dto\Person.Web.Dto.csproj" />
     </ItemGroup>
 
 </Project>
