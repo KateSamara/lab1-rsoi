@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Person.Domain.Interfaces;
+using Person.Domain.PersonModels;
 using Person.Web.Dto;
 using Person.Web.Dto.Converters;
 
@@ -23,20 +24,22 @@ public class PersonController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddPersonAsync([FromBody] PersonRequestDto personDto)
     {
-        try
-        {
-            var person = personDto.ToDomain();
+        var person = personDto.ToDomain();
             
-            var id = await _personRepository.AddPersonAsync(person);
+        var id = await _personRepository.AddPersonAsync(person);
             
-            var locationUri = $"{Request.Scheme}://{Request.Host}/api/persons/{id}";
-            Response.Headers.Location = locationUri;
-            return StatusCode(StatusCodes.Status201Created);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        var locationUri = $"{Request.Scheme}://{Request.Host}/api/persons/{id}";
+        Response.Headers.Location = locationUri;
+        return StatusCode(StatusCodes.Status201Created);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(List<PersonResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetAllPersonAsync()
+    {
+        var persons = await _personRepository.GetAllPersonAsync();
+        
+        return Ok(persons.ConvertAll(person => person.ToDto()));
     }
 }

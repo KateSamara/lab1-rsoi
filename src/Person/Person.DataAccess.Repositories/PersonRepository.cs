@@ -28,4 +28,21 @@ public class PersonRepository(PersonContext personContext) : IPersonRepository
             throw;
         }
     }
+
+    public async Task<List<PersonResponse>> GetAllPersonAsync()
+    {
+        try
+        {
+            var personsDb = await _personContext.Persons
+                .AsNoTracking()
+                .ToListAsync();
+
+            return personsDb.ConvertAll(p => p.ToDomain());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

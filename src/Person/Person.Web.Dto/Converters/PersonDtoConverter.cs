@@ -14,4 +14,13 @@ public static class PersonDtoConverter
             Name = personRequest.Name
         };
     }
+
+    public static PersonResponseDto ToDto(this PersonResponse personResponse)
+    {
+        return new PersonResponseDto(id: personResponse.Id, 
+            name: personResponse.Name,
+            age: personResponse.Age,
+            address: personResponse.Address,
+            work: personResponse.Work);
+    }
 }

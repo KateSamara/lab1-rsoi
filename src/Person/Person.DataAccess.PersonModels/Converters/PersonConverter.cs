@@ -12,4 +12,16 @@ public static class PersonConverter
             address: personRequest.Address,
             work: personRequest.Work);
     }
+
+    public static PersonResponse ToDomain(this PersonDb personDb)
+    {
+        return new PersonResponse
+        {
+            Id = personDb.Id,
+            Name = personDb.Name,
+            Age = personDb.Age,
+            Address = personDb.Address,
+            Work = personDb.Work
+        };
+    }
 }

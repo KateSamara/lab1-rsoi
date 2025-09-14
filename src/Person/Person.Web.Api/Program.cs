@@ -26,10 +26,9 @@ builder.Services.AddDbContext<PersonContext>(options =>
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-    options.SuppressModelStateInvalidFilter = true; // Отключаем стандартную обработку
+    options.SuppressModelStateInvalidFilter = true;
 });
 
-// Регистрируем фильтр
 builder.Services.AddScoped<ValidationFilterAttribute>();
 
 var app = builder.Build();

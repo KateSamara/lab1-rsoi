@@ -5,4 +5,6 @@ namespace Person.Domain.Interfaces;
 public interface IPersonRepository
 {
     Task<int> AddPersonAsync(PersonRequest personResponse);
+    
+    Task<List<PersonResponse>> GetAllPersonAsync();
 }
