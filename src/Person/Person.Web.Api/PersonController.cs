@@ -57,4 +57,13 @@ public class PersonController : ControllerBase
         
         return Ok(person.ToDto());
     }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeletePersonByIdAsync([FromRoute] int id)
+    {
+        await _personRepository.DeletePersonByIdAsync(id);
+        return StatusCode(StatusCodes.Status204NoContent);
+    }
 }

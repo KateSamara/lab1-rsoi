@@ -62,4 +62,19 @@ public class PersonRepository(PersonContext personContext) : IPersonRepository
             throw;
         }
     }
+
+    public async Task DeletePersonByIdAsync(int id)
+    {
+        try
+        {
+            await _personContext.Persons
+                .Where(p => p.Id == id)
+                .ExecuteDeleteAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
