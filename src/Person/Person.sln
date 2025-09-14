@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Person.Domain", "Person.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.Domain.Interfaces", "Person.Domain.Interfaces\Person.Domain.Interfaces.csproj", "{F0568D31-8357-48D9-A096-D600B12B96E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.Domain.Models", "Person.Domain.Models\Person.Domain.Models.csproj", "{A015413D-B444-4ABE-84F8-34C60060F541}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.Domain.PersonModels", "Person.Domain.PersonModels\Person.Domain.PersonModels.csproj", "{A015413D-B444-4ABE-84F8-34C60060F541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.DataAccess.Models", "Person.DataAccess.Models\Person.DataAccess.Models.csproj", "{374B2D03-95F1-4E1B-8E75-4818E0685679}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.DataAccess.PersonModels", "Person.DataAccess.PersonModels\Person.DataAccess.PersonModels.csproj", "{374B2D03-95F1-4E1B-8E75-4818E0685679}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.DataAccess.Repositories", "Person.DataAccess.Repositories\Person.DataAccess.Repositories.csproj", "{B6341A4E-4D70-41E2-93DB-5B8ED513AE71}"
 EndProject

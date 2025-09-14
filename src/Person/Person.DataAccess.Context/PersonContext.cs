@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Person.DataAccess.Models;
+using Person.DataAccess.PersonModels;
 
 namespace Person.DataAccess.Context;
 

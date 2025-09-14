@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Person.DataAccess.Context;
-using Person.DataAccess.Models.Converters;
+using Person.DataAccess.PersonModels.Converters;
 using Person.Domain.Interfaces;
-using Person.Domain.Models;
+using Person.Domain.PersonModels;
 
 namespace Person.DataAccess.Repositories;
 

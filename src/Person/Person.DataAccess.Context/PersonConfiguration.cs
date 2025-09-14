@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Person.DataAccess.Models;
+using Person.DataAccess.PersonModels;
 
 namespace Person.DataAccess.Context;
 

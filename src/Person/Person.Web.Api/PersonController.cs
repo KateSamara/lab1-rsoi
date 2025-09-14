@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Person.DataAccess.Context;
-using Person.DataAccess.Repositories;
 using Person.Domain.Interfaces;
-using Person.Domain.Models;
 using Person.Web.Dto;
 using Person.Web.Dto.Converters;
 

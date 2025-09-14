@@ -1,4 +1,4 @@
-﻿using Person.Domain.Models;
+﻿using Person.Domain.PersonModels;
 
 namespace Person.Domain.Interfaces;
 

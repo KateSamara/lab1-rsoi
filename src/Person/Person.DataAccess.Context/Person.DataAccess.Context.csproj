@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Person.DataAccess.Models\Person.DataAccess.Models.csproj" />
+      <ProjectReference Include="..\Person.DataAccess.PersonModels\Person.DataAccess.PersonModels.csproj" />
     </ItemGroup>
 
 </Project>
