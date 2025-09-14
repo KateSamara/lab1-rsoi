@@ -77,4 +77,29 @@ public class PersonRepository(PersonContext personContext) : IPersonRepository
             throw;
         }
     }
+
+    public async Task<PersonResponse?> UpdatePersonByIdAsync(int id, PersonRequest personRequest)
+    {
+        try
+        {
+            var personDb = await _personContext.Persons
+                .FirstOrDefaultAsync(p => p.Id == id);
+            if (personDb is null)
+                return null;
+            
+            personDb.Name = personRequest.Name;
+            personDb.Age = personRequest.Age;
+            personDb.Address = personRequest.Address;
+            personDb.Work = personRequest.Work;
+
+            await _personContext.SaveChangesAsync();
+
+            return personDb.ToDomain();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

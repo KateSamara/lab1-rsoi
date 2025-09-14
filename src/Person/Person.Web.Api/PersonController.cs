@@ -51,9 +51,7 @@ public class PersonController : ControllerBase
     {
         var person = await _personRepository.GetPersonByIdAsync(id);
         if (person is null)
-        {
             return NotFound(new { message = "Person not found." });
-        }
         
         return Ok(person.ToDto());
     }
@@ -65,5 +63,20 @@ public class PersonController : ControllerBase
     {
         await _personRepository.DeletePersonByIdAsync(id);
         return StatusCode(StatusCodes.Status204NoContent);
+    }
+
+    [HttpPatch("{id}")]
+    [ProducesResponseType(typeof(PersonResponseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdatePersonByIdAsync([FromRoute] int id,
+        [FromBody] PersonRequestDto personRequestDto)
+    {
+        var person = await _personRepository.UpdatePersonByIdAsync(id, personRequestDto.ToDomain());
+        if (person is null)
+            return NotFound(new { message = "Person not found." });
+        
+        return Ok(person.ToDto());
     }
 }

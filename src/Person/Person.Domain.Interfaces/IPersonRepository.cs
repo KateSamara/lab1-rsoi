@@ -11,4 +11,6 @@ public interface IPersonRepository
     Task<PersonResponse?> GetPersonByIdAsync(int id);
     
     Task DeletePersonByIdAsync(int id);
+    
+    Task<PersonResponse?> UpdatePersonByIdAsync(int id, PersonRequest personRequest);
 }
