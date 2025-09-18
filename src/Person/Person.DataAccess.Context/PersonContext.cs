@@ -8,6 +8,8 @@ public class PersonContext : DbContext
     public virtual DbSet<PersonDb> Persons { get; set; }
     
     public PersonContext(DbContextOptions<PersonContext> options) : base(options) { }
+    
+    public PersonContext() { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
