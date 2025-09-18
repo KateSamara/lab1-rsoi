@@ -19,7 +19,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IPersonRepository, PersonRepository>();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("DOCKER_CONNECTION_STRING")
+                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<PersonContext>(options =>
     options.UseNpgsql(connectionString));
@@ -32,6 +33,21 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddScoped<ValidationFilterAttribute>();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var context = services.GetRequiredService<PersonContext>();
+var pendingMigrations = context.Database.GetPendingMigrations().ToList();
+if (pendingMigrations.Any())
+{
+    Console.WriteLine($"Applying {pendingMigrations.Count} migrations...");
+    context.Database.Migrate();
+    Console.WriteLine("Migrations applied successfully");
+}
+else
+{
+    Console.WriteLine("Database is up-to-date");
+}
 
 if (app.Environment.IsDevelopment())
 {

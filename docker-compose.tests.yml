@@ -1,0 +1,5 @@
+version: "3"
+services:
+  person_service_tests:
+    image: person-tests-image:latest
+    command: ["sh", "-c", "dotnet test /app/Person/Person.UnitTests/Person.UnitTests.csproj -c Release --no-build"]

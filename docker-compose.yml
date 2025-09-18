@@ -13,6 +13,25 @@ services:
       - ./postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5436:5432"
+    networks:
+      - test-network
+
+  person_service:
+    image: person-image:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DOCKER_CONNECTION_STRING: "Host=postgres;Port=5432;Database=persons;Username=program;Password=test"
+    networks:
+      - test-network
+    command: ["sh", "-c", "dotnet run ./Person/Person.Web.Api/Person.Web.Api.csproj -c Release --no-build"]
+    ports:
+      - "8080:8080"
 
 volumes:
   db-data:
+
+networks:
+  test-network:
+    driver: bridge
