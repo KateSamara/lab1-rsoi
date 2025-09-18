@@ -20,8 +20,8 @@ jobs:
       - name: Build dockerfile for app
         run: |
           docker build -t person:latest ./ --target=release
-          docker commit person:latest person-image:latest
-          docker save person-image:latest > person.tar
+        
+          docker save person:latest > person.tar
       - uses: actions/upload-artifact@v4 
         with: 
           name: person-artefact 
@@ -30,8 +30,8 @@ jobs:
       - name: Build dockerfile for tests
         run: |
           docker build -t person-tests:latest ./ --target=build
-          docker commit person-tests:latest person-tests-image:latest
-          docker save person-tests-image:latest > person-tests.tar
+ 
+          docker save person-tests:latest > person-tests.tar
       - uses: actions/upload-artifact@v4 
         with: 
           name: person-tests-artefact 
