@@ -32,7 +32,7 @@ services:
       DOCKER_CONNECTION_STRING: "Host=postgres;Port=5432;Database=persons;Username=program;Password=test"
     networks:
       - test-network
-    command: ["sh", "-c", "/app/Person/Person.Web.Api"]
+    command: ["sh", "-c", "/app/Person/linux-x86/Person.Web.Api"]
     ports:
       - "8080:8080"
 
