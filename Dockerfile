@@ -6,7 +6,7 @@ COPY ./src/Person ./Person
 
 RUN dotnet restore ./Person/Person.sln
 
-RUN dotnet build --runtime linux-x64 ./Person/Person.sln -c Release
+RUN dotnet build ./Person/Person.sln -c Release
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS release
 
