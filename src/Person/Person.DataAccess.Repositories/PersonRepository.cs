@@ -14,7 +14,12 @@ public class PersonRepository(PersonContext personContext) : IPersonRepository
     {
         try
         {
-            var id = await _personContext.Persons.MaxAsync(p => p.Id) + 1;
+            int id;
+            if (await _personContext.Persons.CountAsync() == 0)
+                id = 1;
+            else
+                id = await _personContext.Persons.MaxAsync(p => p.Id) + 1;
+            
             var personDb = personRequest.ToDb(id);
             
             _personContext.Persons.Add(personDb);
