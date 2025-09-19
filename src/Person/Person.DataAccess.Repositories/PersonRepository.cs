@@ -92,10 +92,14 @@ public class PersonRepository(PersonContext personContext) : IPersonRepository
             if (personDb is null)
                 return null;
             
-            personDb.Name = personRequest.Name;
-            personDb.Age = personRequest.Age;
-            personDb.Address = personRequest.Address;
-            personDb.Work = personRequest.Work;
+            if (personRequest.Name is not null)
+                personDb.Name = personRequest.Name;
+            if (personRequest.Age is not null)
+                personDb.Age = personRequest.Age.Value;
+            if (personRequest.Address is not null)
+                personDb.Address = personRequest.Address;
+            if (personRequest.Work is not null)
+                personDb.Work = personRequest.Work;
 
             await _personContext.SaveChangesAsync();
 

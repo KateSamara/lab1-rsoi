@@ -9,7 +9,7 @@ public static class PersonConverter
     {
         return new PersonDb(id: id,
             name: personRequest.Name,
-            age: personRequest.Age,
+            age: personRequest.Age.Value,
             address: personRequest.Address,
             work: personRequest.Work);
     }
