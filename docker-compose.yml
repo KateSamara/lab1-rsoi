@@ -8,6 +8,12 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB: postgres
+    healthcheck:
+      test: bash -c "pg_isready -U postgres -d postgres"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./postgres/:/docker-entrypoint-initdb.d/
@@ -17,7 +23,7 @@ services:
       - test-network
 
   person_service:
-    image: person-image:latest
+    image: person:latest
     container_name: person
     depends_on:
       postgres:
@@ -26,7 +32,7 @@ services:
       DOCKER_CONNECTION_STRING: "Host=postgres;Port=5432;Database=persons;Username=program;Password=test"
     networks:
       - test-network
-    command: ["sh", "-c", "dotnet run ./Person/Person.Web.Api/Person.Web.Api.csproj -c Release --no-build"]
+    command: ["sh", "-c", "/app/Person/Person.Web.Api"]
     ports:
       - "8080:8080"
 
