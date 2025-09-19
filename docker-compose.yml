@@ -18,6 +18,7 @@ services:
 
   person_service:
     image: person-image:latest
+    container_name: person
     depends_on:
       postgres:
         condition: service_healthy

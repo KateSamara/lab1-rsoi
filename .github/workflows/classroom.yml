@@ -20,7 +20,6 @@ jobs:
       - name: Build dockerfile for app
         run: |
           docker build -t person:latest ./ --target=release
-        
           docker save person:latest > person.tar
       - uses: actions/upload-artifact@v4 
         with: 
@@ -30,7 +29,6 @@ jobs:
       - name: Build dockerfile for tests
         run: |
           docker build -t person-tests:latest ./ --target=build
- 
           docker save person-tests:latest > person-tests.tar
       - uses: actions/upload-artifact@v4 
         with: 
@@ -61,7 +59,27 @@ jobs:
             echo "TESTS_STATUS=failed" >> $GITHUB_ENV
           fi
 
+  deploy:
+    name: Deploy Project
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/download-artifact@v4
+        with: 
+          name: person-artefact 
 
+      - name: Load To Server
+        run: |
+          sshpass -p ${{ secrets.SERVER_PASSWORD }} scp -o StrictHostKeyChecking=no person.tar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP_ADDRESS }}:~/
+          sshpass -p ${{ secrets.SERVER_PASSWORD }} scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP_ADDRESS }}:~/
+
+          sshpass -p ${{ secrets.SERVER_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP_ADDRESS }} docker rm person
+          sshpass -p ${{ secrets.SERVER_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP_ADDRESS }} docker load person.tar
+          sshpass -p ${{ secrets.SERVER_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP_ADDRESS }} docker-compose up -d
 
 
   # build:
